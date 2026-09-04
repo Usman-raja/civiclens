@@ -1,0 +1,14 @@
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy.sql import func
+
+from app.database import Base
+
+
+class FaceEmbedding(Base):
+    __tablename__ = "face_embeddings"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    person_id = Column(String, ForeignKey("participants.person_id", ondelete="CASCADE"), nullable=False)
+    embedding = Column(String, nullable=False)
+    model_name = Column(String, nullable=False, default="buffalo_l")
+    created_at = Column(DateTime, server_default=func.now())

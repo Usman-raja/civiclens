@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+python-multipart
+python-dotenv
+psycopg2-binary
+opencv-python
+numpy
+pillow
+onnxruntime
+insightface
+python-certifi-win32
+ultralytics
+openpyxl
+msvc-runtime
+redis

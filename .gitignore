@@ -1,0 +1,69 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.cer
+*.jks
+
+# Local databases and runtime state
+*.db
+*.sqlite
+*.sqlite3
+**/.jwt_secret
+backend/app/storage/images/registered/*
+!backend/app/storage/images/registered/.gitkeep
+backend/app/storage/images/detections/*
+!backend/app/storage/images/detections/.gitkeep
+backend/app/storage/images/evidence/*
+!backend/app/storage/images/evidence/.gitkeep
+backend/app/storage/images/live/*
+!backend/app/storage/images/live/.gitkeep
+
+# Python
+**/venv/
+**/.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Node and Next.js
+**/node_modules/
+**/.next/
+**/out/
+
+# AI model weights (auto-downloaded by ultralytics/insightface on first run)
+*.pt
+*.onnx
+*.pth
+backend/weights/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Packaging and generated releases
+build/
+dist/
+output/
+node/
+*.exe
+*.msi
+*.zip
+*.7z
+CivicLens-Presentation-v2.pptx
+
+# Local IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*
+*.log

@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+civiclens.db
+app/.jwt_secret
+weights/clip/
+
+app/storage/images/registered/*
+app/storage/images/detections/*
+app/storage/images/evidence/*
+!app/storage/images/registered/.gitkeep
+!app/storage/images/detections/.gitkeep
+!app/storage/images/evidence/.gitkeep
+app/storage/images/live/*
+!app/storage/images/live/.gitkeep

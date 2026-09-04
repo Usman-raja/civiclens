@@ -1,0 +1,283 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Variable.ttf") format("truetype-variations");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("/fonts/IBMPlexSans-Variable.ttf") format("truetype-variations");
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Variable.ttf") format("truetype-variations");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+:root {
+  --void: #07090d;
+  --panel: #0e131b;
+  --panel-raised: #131a24;
+  --hairline: #1e2733;
+  --hairline-bright: #2c3a4d;
+  --ink: #e8edf3;
+  --ink-dim: #7e8ca0;
+  --ink-faint: #4c5768;
+
+  --signal-cyan: #35c7e0;
+  --signal-cyan-dim: #1a7f91;
+  --signal-green: #2ed47a;
+  --signal-amber: #f0a63c;
+  --signal-red: #f0473f;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Consolas", monospace;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-hairline: var(--hairline);
+  --color-hairline-bright: var(--hairline-bright);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-signal-cyan: var(--signal-cyan);
+  --color-signal-cyan-dim: var(--signal-cyan-dim);
+  --color-signal-green: var(--signal-green);
+  --color-signal-amber: var(--signal-amber);
+  --color-signal-red: var(--signal-red);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --animate-scan: scan 2.4s linear infinite;
+  --animate-rise: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pulse-ring: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-sweep: sweep 4s linear infinite;
+  --animate-radar: radar 3s linear infinite;
+  --animate-blink: blink 1.2s steps(2, start) infinite;
+  --animate-flicker: flicker 6s linear infinite;
+  --animate-slide-in: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-glow: glow 3s ease-in-out infinite;
+  --animate-ticker: ticker 30s linear infinite;
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(240, 71, 63, 0.5); }
+    100% { box-shadow: 0 0 0 10px rgba(240, 71, 63, 0); }
+  }
+  @keyframes sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  @keyframes radar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.6; }
+    94% { opacity: 1; }
+    96% { opacity: 0.8; }
+    97% { opacity: 1; }
+  }
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 2px currentColor); }
+    50% { filter: drop-shadow(0 0 8px currentColor); }
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+* {
+  border-color: var(--hairline);
+}
+
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--panel) 72%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--signal-cyan) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--signal-cyan) 6%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* HUD corner brackets — intelligence-agency framing for panels/feeds */
+.hud-corners {
+  position: relative;
+}
+.hud-corners::before,
+.hud-corners::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: var(--signal-cyan);
+  opacity: 0.7;
+}
+.hud-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.hud-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Scanning line that sweeps across a feed/panel */
+.scanline {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--signal-cyan) 85%, transparent), transparent);
+  box-shadow: 0 0 18px 2px color-mix(in srgb, var(--signal-cyan) 70%, transparent);
+  animation: scan 2.4s linear infinite;
+}
+
+/* Brighter double scanline — for hero surfaces */
+.scanline-strong {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scanline-strong::before,
+.scanline-strong::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.scanline-strong::before {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--signal-cyan) 90%, transparent), transparent);
+  box-shadow: 0 0 22px 3px color-mix(in srgb, var(--signal-cyan) 75%, transparent);
+  animation: scan 2.2s linear infinite;
+}
+.scanline-strong::after {
+  height: 40px;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--signal-cyan) 7%, transparent), transparent);
+  animation: scan 2.2s linear infinite;
+  animation-delay: 0.08s;
+}
+
+/* Tick marks around the edge of live feeds — targeting-frame feel */
+.hud-ticks {
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, transparent 0 39px, color-mix(in srgb, var(--signal-cyan) 35%, transparent) 39px 40px);
+  -webkit-mask-image: linear-gradient(90deg, #000 0 2px, transparent 2px),
+    linear-gradient(-90deg, #000 0 2px, transparent 2px);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, #000 0 2px, transparent 2px),
+    linear-gradient(-90deg, #000 0 2px, transparent 2px);
+  mask-composite: intersect;
+}
+
+/* Vertical signal bars — audio-mixer / signal-strength feel */
+.eq-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.eq-bars span {
+  width: 3px;
+  border-radius: 1px;
+  background: currentColor;
+  animation: eq 1s ease-in-out infinite;
+}
+.eq-bars span:nth-child(1) { animation-delay: 0s; }
+.eq-bars span:nth-child(2) { animation-delay: 0.15s; }
+.eq-bars span:nth-child(3) { animation-delay: 0.3s; }
+.eq-bars span:nth-child(4) { animation-delay: 0.45s; }
+@keyframes eq {
+  0%, 100% { height: 25%; }
+  50% { height: 100%; }
+}
+
+/* Neon text glow for headline numbers */
+.text-glow-cyan {
+  text-shadow: 0 0 12px color-mix(in srgb, var(--signal-cyan) 55%, transparent);
+}
+.text-glow-green {
+  text-shadow: 0 0 12px color-mix(in srgb, var(--signal-green) 55%, transparent);
+}
+.text-glow-red {
+  text-shadow: 0 0 12px color-mix(in srgb, var(--signal-red) 55%, transparent);
+}
+
+/* Ambient backdrop glow behind the app */
+.bg-aurora {
+  background:
+    radial-gradient(60% 50% at 20% 0%, color-mix(in srgb, var(--signal-cyan) 5%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 90% 100%, color-mix(in srgb, var(--signal-cyan) 4%, transparent), transparent 70%),
+    var(--void);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
