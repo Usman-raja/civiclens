@@ -127,7 +127,6 @@ export default function LoginPage() {
 
         <div className="mt-6 border-t border-hairline pt-4 text-center">
           <div className="font-display text-xs font-semibold tracking-wide text-ink-dim">Usman Farid</div>
-          <div className="mt-0.5 font-mono text-[10px] text-ink-faint/60">0317 750 5992</div>
           <div className="mt-1 font-mono text-[9px] tracking-[0.2em] text-ink-faint/50">MADE IN PAKISTAN</div>
         </div>
       </div>

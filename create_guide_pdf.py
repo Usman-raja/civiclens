@@ -222,7 +222,7 @@ def main():
     pdf.set_text_color(148, 163, 184)
     pdf.cell(0, 8, "Version 1.0 | September 2026", align="C")
     pdf.ln(8)
-    pdf.cell(0, 8, "Usman Farid | 0317 750 5992 | Made in Pakistan", align="C")
+    pdf.cell(0, 8, "Usman Farid | Made in Pakistan", align="C")
 
     # Content pages
     pdf.add_page()

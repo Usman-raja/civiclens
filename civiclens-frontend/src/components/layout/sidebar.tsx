@@ -117,8 +117,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           </div>
           <div className="mt-2.5 border-t border-hairline/60 pt-2.5">
             <div className="font-display text-xs font-semibold tracking-wide text-ink-dim">Usman Farid</div>
-            <div className="mt-0.5 flex items-baseline justify-between">
-              <span className="font-mono text-[10px] text-ink-faint/70">0317 750 5992</span>
+            <div className="mt-0.5">
               <span className="font-mono text-[9px] tracking-[0.15em] text-ink-faint/50">MADE IN PAKISTAN</span>
             </div>
           </div>

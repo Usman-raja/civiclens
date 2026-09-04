@@ -179,7 +179,7 @@ PORTS:
   Backend:  http://127.0.0.1:8000
 
 SUPPORT:
-  Usman Farid — 0317 750 5992
+  Usman Farid
   Made in Pakistan
 """
     with open(os.path.join(DIST, "README.txt"), "w") as f:

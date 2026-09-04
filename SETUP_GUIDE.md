@@ -597,7 +597,6 @@ Solutions:
 ## Support
 
 **Developer:** Usman Farid
-**Phone:** 0317 750 5992
 **Made in:** Pakistan
 
 ---

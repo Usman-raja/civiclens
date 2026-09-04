@@ -339,7 +339,6 @@ add_accent_line(slide, 4.5, 2.2, 4)
 add_text(slide, 1, 2.5, 11, 1.2, "Thank You", size=54, color=ACCENT, bold=True, align=PP_ALIGN.CENTER)
 add_text(slide, 1, 3.8, 11, 0.8, "CivicLens -- City-Scale Video Intelligence Platform", size=22, color=WHITE, align=PP_ALIGN.CENTER)
 add_text(slide, 1, 5.0, 11, 0.5, "Usman Farid", size=20, color=WHITE, align=PP_ALIGN.CENTER)
-add_text(slide, 1, 5.5, 11, 0.5, "0317 750 5992", size=16, color=GRAY, align=PP_ALIGN.CENTER)
 add_text(slide, 1, 6.2, 11, 0.5, "Made in Pakistan", size=18, color=GREEN, align=PP_ALIGN.CENTER)
 
 output = r"C:\Users\farid\civiclens\CivicLens-Hackathon-Presentation.pptx"
