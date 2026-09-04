@@ -11,14 +11,14 @@ class GuidePDF(FPDF):
     def header(self):
         if self.page_no() > 1:
             self.set_font("Helvetica", "I", 8)
-            self.set_text_color(148, 163, 184)
+            self.set_text_color(100, 110, 125)
             self.cell(0, 8, "CivicLens - Setup & Deployment Guide", align="C")
             self.ln(10)
 
     def footer(self):
         self.set_y(-15)
         self.set_font("Helvetica", "I", 8)
-        self.set_text_color(148, 163, 184)
+        self.set_text_color(100, 110, 125)
         self.cell(0, 10, f"Page {self.page_no()}/{{nb}}", align="C")
 
     def section_title(self, text, level=1):
@@ -41,21 +41,21 @@ class GuidePDF(FPDF):
             self.ln(8)
         elif level == 3:
             self.set_font("Helvetica", "B", 12)
-            self.set_text_color(255, 255, 255)
+            self.set_text_color(15, 23, 42)
             self.cell(0, 8, text)
             self.ln(6)
 
     def body_text(self, text):
         text = sanitize(text)
         self.set_font("Helvetica", "", 10)
-        self.set_text_color(220, 220, 220)
+        self.set_text_color(51, 65, 85)
         self.multi_cell(0, 6, text)
         self.ln(2)
 
     def bold_text(self, text):
         text = sanitize(text)
         self.set_font("Helvetica", "B", 10)
-        self.set_text_color(255, 255, 255)
+        self.set_text_color(15, 23, 42)
         self.multi_cell(0, 6, text)
         self.ln(2)
 
@@ -82,7 +82,7 @@ class GuidePDF(FPDF):
     def bullet(self, text):
         text = sanitize(text)
         self.set_font("Helvetica", "", 10)
-        self.set_text_color(200, 200, 200)
+        self.set_text_color(51, 65, 85)
         x = self.get_x()
         self.set_x(x + 5)
         self.cell(4, 6, "-")
@@ -110,7 +110,10 @@ def sanitize(text):
     replacements = {
         "\u2014": "-", "\u2013": "-", "\u2018": "'", "\u2019": "'",
         "\u201c": '"', "\u201d": '"', "\u2022": "*", "\u2026": "...",
-        "\u2192": "->", "\u2190": "<-", "\u00d7": "x", "\u00b7": "*",
+        "\u2192": "->", "\u2190": "<-", "\u2191": "^", "\u2193": "v",
+        "\u00d7": "x", "\u00b7": "*", "\u2264": "<=", "\u2713": "v",
+        "\u2500": "-", "\u2502": "|", "\u250c": "+", "\u2510": "+",
+        "\u2514": "+", "\u2518": "+", "\u252c": "+", "\u2534": "+",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
@@ -160,12 +163,12 @@ def parse_and_render(pdf, md_path):
             pdf.bullet(raw.strip().lstrip("- "))
         elif raw.startswith("> "):
             pdf.set_font("Helvetica", "I", 10)
-            pdf.set_text_color(148, 163, 184)
+            pdf.set_text_color(100, 110, 125)
             pdf.multi_cell(0, 6, raw[2:].strip())
             pdf.ln(2)
         elif raw.strip() == "---":
             pdf.ln(3)
-        elif raw.strip() and not raw.startswith("1. [") and not raw.startswith("2. [") and not raw.startswith("3. ["):
+        elif raw.strip():
             clean = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', raw.strip())
             clean = clean.replace("**", "")
             if clean:
